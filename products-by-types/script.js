@@ -15,15 +15,11 @@
 	}).done(function (products) {
 
 	    products.forEach(function(item) {
-  			if (item.type == 'sale'){
-  				sale.push(item);
-  			}
-  			else if (item.type == 'promo'){
-  				promo.push(item);
-  			}
-  			else if (item.type == 'recommended'){
-  				recommended.push(item);
-  			}
+	    	switch(item.type){
+	    		case 'sale': sale.push(item); break;
+	    		case 'promo': promo.push(item); break;
+	    		case 'recommended': recommended.push(item); break;
+	    	}
 		});
 
 	$('#sale').find( $('.content')).html( tmpl({ products: sale }) );
