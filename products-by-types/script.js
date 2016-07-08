@@ -8,7 +8,10 @@
 	$.ajax({
     // url: "https://raw.githubusercontent.com/AnastasiyaDev/homeworks-1/master/products-by-types/products.json",
     url: 'products.json',
-    dataType : 'json'
+    dataType : 'json',
+    beforeSend: function () {
+        $.fancybox.showLoading();
+    }
 	}).done(function (products) {
 
 	    products.forEach(function(item) {
@@ -23,25 +26,16 @@
   			}
 		});
 
-	$('#sale .content').html( tmpl({ products: sale }) );
-	$('#promo .content').html( tmpl({ products: promo }) );
-	$('#recommended .content').html( tmpl({ products: recommended }) );
-
+	$('#sale').find( $('.content')).html( tmpl({ products: sale }) );
+	$('#promo').find( $('.content')).html( tmpl({ products: promo }) );
+	$('#recommended').find( $('.content')).html( tmpl({ products: recommended }) );
 
 	}).fail(function (xhr, status, errorThrown) {
 	    alert("Извините, произошла ошибка. Пожалуйста, обновите страницу и попробуйте еще раз.");
 	    console.log("Error: " + errorThrown);
 	    console.log("Status: " + status);
-	    console.dir(xhr);
+	    console.dir(xhr); // list of properties
 	}).always(function (xhr, status) {
-	    $.fancybox.hideLoading(); 
+        $.fancybox.hideLoading();
 	});
 
-
-	$(document)
-	    .on('ajaxStart', function () {
-	        $.fancybox.showLoading();
-	    })
-	    .on('ajaxStop', function () {
-	        $.fancybox.hideLoading();
-	    });
