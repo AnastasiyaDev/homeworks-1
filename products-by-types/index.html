@@ -14,49 +14,33 @@
 </head>
 <body>
 
-<div id="sale">
-  <h2 class="title"><b>Распродажа</b></h2>
-  <div class="content"></div>
-</div>
-
-<div id="promo">
-  <h2 class="title"><b>Промо-акция</b></h2>
-  <div class="content"></div>
-</div>
-
-<div id="recommended">
-  <h2 class="title"><b>Рекомендуемые товары</b></h2>
-  <div class="content"></div>
-</div>
-
+  <div id="sale"></div>
+  <div id="promo"></div>
+  <div id="recommended"></div>
 
 <!-- Шаблон lodash -->
+  <script type="text/template" id="list-template">
 
-<script type="text/template" id="list-template">
+    <h2 class="title"><b><%=productНeader %></b></h2>
+    <div class="product-set row">
+    <% _(products).forEach(function(product) { %>
+      <div class="product-set__item col-sm-6 col-md-4"> 
+          <div class="pic"><img src="media/products/<%= product.pic %>"></div>
+          <h4><b><%= product.name %></b></h4>
+          <p>Цена: <%= product.price %>₽</p> 
+          </div>
+    <% }); %>
+    </div> 
 
-  <div class="row">
-  <% _(products).forEach(function(product) { %>
-    <div class="col-sm-6 col-md-4"> 
-        <div class="pic"><img src="media/products/<%= product.pic %>"></div>
-        <h4><b><%= product.name %></b></h4>
-        <p>Цена: <%= product.price %>₽</p> 
-        </div>
-  <% }); %>
-  </div> 
-
-</script>
+  </script>
 
 
-<script src="https://code.jquery.com/jquery-3.0.0.min.js"
-        integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
-<script src="script.js"></script>
-
-<!-- <script type="text/javascript">
-  var productType = ["Распродажа", "Промо-акция", "Рекомендуемые товары"];
-</script> -->
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"
+          integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+  <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>

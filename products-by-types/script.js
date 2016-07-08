@@ -22,9 +22,9 @@
 	    	}
 		});
 
-	$('#sale').find( $('.content')).html( tmpl({ products: sale }) );
-	$('#promo').find( $('.content')).html( tmpl({ products: promo }) );
-	$('#recommended').find( $('.content')).html( tmpl({ products: recommended }) );
+	$('#sale').html( tmpl({ products: sale, productНeader: "Распродажа" }) );
+	$('#promo').html( tmpl({ products: promo, productНeader: "Промо-акция" }) );
+	$('#recommended').html( tmpl({ products: recommended, productНeader: "Рекомендуемые товары" }) );
 
 	}).fail(function (xhr, status, errorThrown) {
 	    alert("Извините, произошла ошибка. Пожалуйста, обновите страницу и попробуйте еще раз.");
@@ -34,4 +34,3 @@
 	}).always(function (xhr, status) {
         $.fancybox.hideLoading();
 	});
-
