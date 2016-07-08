@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     
-   
-
     <style>
         body {
             margin: 40px;
@@ -16,11 +14,11 @@
 </head>
 <body>
 
-<div id="sale" class="block">
-<!-- <h3><b>Rasprodaja</b></h3> -->
+<div id="sale">
+<!-- <h3><b>Распродажа/b></h3> -->
   
 </div>
-<div id="promo" class="block"></div>
+<div id="promo"></div>
 <div id="recommended"></div>
 
 
@@ -39,14 +37,17 @@
 </script> -->
 
 <script type="text/template" id="list-template">
-<ul>
-  <% for (var i=1; i<=count; i++) { %>
-  <li><%= i %></li>
-  <% } %>
-</ul>
-<% _(products).forEach(function(product) { %>
-<p> <%= product.name %></p>
-<% }); %>
+
+  <div class="row">
+  <% _(products).forEach(function(product) { %>
+    <div class="col-sm-6 col-md-4"> 
+        <div class="pic"><img src="media/products/<%= product.pic %>"></div>
+        <h4><b><%= product.name %></b></h4>
+        <p> Цена: <%= product.price %> ₽</p> 
+        </div>
+  <% }); %>
+  </div> 
+
 </script>
 
 
