@@ -3,6 +3,7 @@
 	var sale = [];
 	var promo = [];
 	var recommended = [];
+	var tmpl = _.template($('#list-template').html() );
 
 	$.ajax({
     // url: "https://raw.githubusercontent.com/AnastasiyaDev/homeworks-1/master/products-by-types/products.json",
@@ -10,8 +11,6 @@
     dataType : 'json'
 	}).done(function (products) {
 
-		
-	    // console.log(data);
 	    products.forEach(function(item) {
   			if (item.type == 'sale'){
   				sale.push(item);
@@ -24,7 +23,9 @@
   			}
 		});
 
-	// $('#sale').html( tmpl({products: sale}) );
+	$('#sale .content').html( tmpl({ products: sale }) );
+	$('#promo .content').html( tmpl({ products: promo }) );
+	$('#recommended .content').html( tmpl({ products: recommended }) );
 
 
 	}).fail(function (xhr, status, errorThrown) {

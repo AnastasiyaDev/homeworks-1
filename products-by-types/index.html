@@ -15,26 +15,22 @@
 <body>
 
 <div id="sale">
-<!-- <h3><b>Распродажа/b></h3> -->
-  
+  <h3 class="title"><b>Распродажа</b></h3>
+  <div class="content"></div>
 </div>
-<div id="promo"></div>
-<div id="recommended"></div>
+
+<div id="promo">
+  <h3 class="title"><b>Промо-акция</b></h3>
+  <div class="content"></div>
+</div>
+
+<div id="recommended">
+  <h3 class="title"><b>Рекомендуемые товары</b></h3>
+  <div class="content"></div>
+</div>
 
 
 <!-- Шаблон lodash -->
-<!-- <script type="text/template" id="list-template">
-    
-        <div class="row">
-        <% products.forEach(function(product) { %>
-            <div class="col-sm-6 col-md-4"> 
-                <div class="pic"><img src="media/products/<%= product.pic %>"></div>
-                <h4><% product.name %></h4>
-                <p><% product.price %></p> 
-            </div>
-        <% } %>
-        </div>  
-</script> -->
 
 <script type="text/template" id="list-template">
 
@@ -51,7 +47,6 @@
 </script>
 
 
-
 <script src="https://code.jquery.com/jquery-3.0.0.min.js"
         integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
@@ -59,30 +54,5 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
 <script src="script.js"></script>
 
-<script>
-  var tmpl = _.template($('#list-template').html() );
-
-  var pro = [ {
-    "name": "Несмываемый эликсир So Long Damage Break Fix",
-    "pic": "Total_Results_So_Long_Damage_Break_Fix_TR-SLD-BF_2.jpg",
-    "price": 220,
-    "type": "sale"
-  },
-  {
-    "name": "Термозащитный спрей Heat Buffer",
-    "pic": "StyleLink_Prep_HeatBuffer_SL-HBU.png",
-    "price": 360,
-    "type": "recommended"
-  },
-  {
-    "name": "Разглаживающий крем Smooth Setter",
-    "pic": "StyleLink_Prep_SmoothSetter_SL-SSE.png",
-    "price": 293,
-    "type": "recommended"
-  }];
-
-  $('#sale').html( tmpl({count: 8, products: pro}) );
-
-</script>
 </body>
 </html>
