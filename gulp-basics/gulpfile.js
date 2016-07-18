@@ -21,7 +21,7 @@ const isProduction = process.env.NODE_ENV == 'production';
  
 gulp.task('serve', function(){
 	browserSync.init({
-     	server: "./"
+     	server: "./dist"
  	});
 
  	browserSync.watch("./src/*.*").on('change', browserSync.reload);
@@ -36,18 +36,18 @@ gulp.task('styles', function () {
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions']
 		 }))
-		.pipe(gulpif(isProduction, uglify()))
+		.pipe(gulpIf(isProduction, uglify()))
 		.pipe(gulpIf(isProduction, sourcemaps.write()))
 		.pipe(gulp.dest('dist/css')); // public+ relative
 });
 
 gulp.task('scripts', function() {
     return gulp.src('src/js/**/*.js')
-        .pipe(gulpif(isProduction, sourcemaps.init()))
+        .pipe(gulpIf(isProduction, sourcemaps.init()))
         .pipe(concat('all.js'))
-        .pipe(gulpif(isProduction, uglify()))
-        .pipe(gulpif(isProduction, jsObfuscator()))
-        .pipe(gulpif(isProduction, sourcemaps.write()))
+        .pipe(gulpIf(isProduction, uglify()))
+        .pipe(gulpIf(isProduction, jsObfuscator()))
+        .pipe(gulpIf(isProduction, sourcemaps.write()))
         .pipe(gulp.dest('dist/js'));
 });
 
@@ -64,14 +64,14 @@ gulp.task('entryFiles', function(){
 
 gulp.task('eslint', function() {
     return gulp.src('src/js/**/*.js')
-    	.pipe(gulpif(isProduction, eslint()))
+    	.pipe(gulpIf(isProduction, eslint()))
 });
 
 gulp.task('default', ['styles', 'scripts', 'img', 'entryFiles', 'eslint', 'serve']);
 
 
 // gulp.task('clean', function(){
-// 	return del('public');
+// 	return del('dist');
 // });
 
 // gulp.task('watcher', function(){
