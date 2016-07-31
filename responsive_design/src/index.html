@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GIORGIO ARMANI</title>
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <script>
+        document.createElement( "picture" );
+    </script>
+
+    <script src="js/lib/picturefill.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="top-panel">
+            <div class="menu-toggle only-mobile">
+                |||
+            </div>
+            
+        </div>
+
+        <div class="header-menu">
+            <ul class="header-menu__list unstyle list-inline">
+                <li class="header-menu__item"><a class="header-menu__link" href="">Makeup</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">Skincare</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">Fragrances</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">Armani Prave</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">|</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">Online exclusives</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">Gifts</a></li>
+                <li class="header-menu__item"><a class="header-menu__link" href="">Maestro of details</a></li>
+            </ul>
+        </div>
+
+    
+
+    <div id="menuToggle" class="menu"></div>
+
+    </div>
+    <!-- .header -->
+
+
+    <div id="img-grid" class="home-banner js-home-banner">
+        <div class="home-banner-item home-banner-item_0">
+            <img src="img/desktop/banner_top.jpg" alt="MDN">      
+        </div>
+
+        <div class="row-1">
+            <div class="home-banner-item home-banner-item_1">
+                <img src="img/desktop/tile_1.jpg" alt="MDN">      
+            </div>
+            <div class="home-banner-item home-banner-item_2">
+                <img src="img/desktop/blue.jpg" alt="MDN"> 
+            </div>
+        </div>
+
+        <div class="home-banner-item home-banner-item_3">
+            <img src="img/desktop/tile_2.jpg" alt="MDN">      
+        </div>
+
+        
+        <div class="home-banner-item home-banner-item_4">
+            <img src="img/desktop/black.jpg" alt="MDN">      
+        </div>
+
+        <div class="row-2">      
+            <div class="home-banner-item home-banner-item_5">
+                <img src="img/desktop/gray.jpg" alt="MDN">      
+            </div>
+            <div class="home-banner-item home-banner-item_6">
+                <img src="img/desktop/red.jpg" alt="MDN">      
+            </div>  
+        </div>
+
+        <div class="home-banner-item home-banner-item_7">
+            <img src="img/desktop/banner_bottom.jpg" alt="MDN">      
+        </div>
+    </div>
+
+
+    <script type="text/template" id="list-template">
+
+        <% _(images).forEach(function(image, i) { %>
+        <div class="home-banner-item home-banner-item_<%= i %>">
+            <picture>
+                <!--[if IE 9]><video style="display: none;"><![endif]-->
+                <!-- Большой баннер для десктопов -->
+                <source srcset="img/desktop/<%= image %>" media="(min-width: 320px)">
+                <!--[if IE 9]></video><![endif]-->
+
+
+                <!-- Маленький баннер для мобил -->
+                <img srcset="img/mobile/<%= image %>" alt="MDN">
+            </picture>
+        </div>
+    <% }); %>
+
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"
+          integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+    <script type="text/javascript"
+          src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <script src="js/lib/flexibility1.0.6.js"></script>
+
+    <script src="js/scripts.js"></script>
+
+</body>
+</html>
