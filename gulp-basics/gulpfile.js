@@ -8,7 +8,6 @@ const uglify = require('gulp-uglify');
 const minifyCss  = require('gulp-minify-css');
 const debug = require('gulp-debug');
 const sourcemaps = require('gulp-sourcemaps'); 
-const jsObfuscator = require('gulp-js-obfuscator');
 const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 const eslint = require('gulp-eslint');
@@ -45,7 +44,6 @@ gulp.task('scripts', function() {
         .pipe(gulpIf(isProduction, sourcemaps.init()))
         .pipe(concat('all.js'))
         .pipe(gulpIf(isProduction, uglify()))
-        .pipe(gulpIf(isProduction, jsObfuscator()))
         .pipe(gulpIf(isProduction, sourcemaps.write()))
         .pipe(gulp.dest('dist/js'))
         .pipe(browserSync.reload({stream: true}));
