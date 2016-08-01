@@ -77,6 +77,7 @@ a {
         color: #fff;
         text-transform: uppercase;
         letter-spacing: 1px;
+        
     }
 
     @media @mobile {
@@ -111,7 +112,6 @@ a {
     @media @mobile {
         flex: 0 0 100%;
     }
-
 }
 .row-2 {
     flex: 0 0 30%;
@@ -120,7 +120,13 @@ a {
     }   
 }
 .home-banner-item {
-    width: 100%;
+    margin: 0;
+    padding: 0;
+    flex: auto; 
+    img { 
+      width: 100%; 
+      height: 100%; 
+    }
     &_0 {
         // order: 7;
         flex: 1 100%;
@@ -132,34 +138,27 @@ a {
         }
     }
     &_2 {
-        flex: 0 0 50%;
-        background: #88B5BA;
         @media @mobile {
             flex: 0 0 100%;
         }
     }
     &_3 {
         flex: 0 0 50%;
-        align-items: auto;
-        background: #295263;
         @media @mobile {
             flex: 0 0 100%;
         }
     }
     &_4 {
         flex: 0 0 70%;
-        background: #000;
         @media @mobile {
             flex: 0 0 100%;
         }
     }
     &_5 {
 
-        background: #141414;
-
     }
     &_6 {
-        background: #BB1C18;
+
     }
     &_7 {
 

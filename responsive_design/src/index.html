@@ -23,8 +23,8 @@
             
         </div>
 
-        <div class="header-menu">
-            <ul class="header-menu__list unstyle list-inline">
+        <div id="header-menu-wide" class="header-menu">
+<!--             <ul class="header-menu__list unstyle list-inline">
                 <li class="header-menu__item"><a class="header-menu__link" href="">Makeup</a></li>
                 <li class="header-menu__item"><a class="header-menu__link" href="">Skincare</a></li>
                 <li class="header-menu__item"><a class="header-menu__link" href="">Fragrances</a></li>
@@ -33,9 +33,17 @@
                 <li class="header-menu__item"><a class="header-menu__link" href="">Online exclusives</a></li>
                 <li class="header-menu__item"><a class="header-menu__link" href="">Gifts</a></li>
                 <li class="header-menu__item"><a class="header-menu__link" href="">Maestro of details</a></li>
-            </ul>
+            </ul> -->
         </div>
 
+    <script type="text/template" id="list-template-menu">
+
+        <ul class="header-menu__list unstyle list-inline">
+        <% _(items).forEach(function(item) { %>
+            <li class="header-menu__item"><a class="header-menu__link" href=""><%= item %></a></li>
+        <% }); %>
+        </ul>
+    </script>
     
 
     <div id="menuToggle" class="menu"></div>
