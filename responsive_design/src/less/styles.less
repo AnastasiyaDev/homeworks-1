@@ -1,6 +1,9 @@
 @tablet: ~"only screen and (min-width: 768px) and (max-width: 1024px)";
 // @tablet-mini: ~"only screen and (max-width: 767px)";
 @mobile: ~"only screen and (max-width: 767px)";
+
+@gray: #d6d6d6;
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
@@ -54,15 +57,38 @@ a {
     display: none;
     @media @mobile {
         display: block;
-        &_inline {
-            display: inline;
-        }
     }
 }
 
 .hide-on-mobile {
     @media @mobile {
         display: none;
+    }
+}
+.info-menu {
+    float: left;
+    &__link {
+        color: #666;
+    }   
+}
+.reg-menu {
+    float: right;
+    &__link {
+        text-transform: uppercase;
+    }   
+}
+.info-menu, .reg-menu {
+    &__item {
+        padding: 5px;
+        margin: 10px 0;
+        border-right: 1px solid @gray;
+        &:last-child {
+            border-right: none;
+        }
+    }
+    &__link {
+       padding: 5px; 
+       font-size: 12px;
     }
 }
 
@@ -77,11 +103,9 @@ a {
         color: #fff;
         text-transform: uppercase;
         letter-spacing: 1px;
-        
-    }
-
-    @media @mobile {
-        display: none; 
+        @media @mobile {
+            color: #000;
+        } 
     }
 }
 
@@ -106,19 +130,22 @@ a {
     display: flex;
     flex-flow: row wrap;
 }
-
 .row-1 {
     flex: 0 0 50%;
-    @media @mobile {
-        flex: 0 0 100%;
-    }
+
 }
 .row-2 {
-    flex: 0 0 30%;
+    flex: 0 0 30%;   
+}
+.row-1, .row-2 {
+    -js-display: flex;
+    display: flex;
+    flex-flow: column nowrap;
     @media @mobile {
         flex: 0 0 100%;
     }   
 }
+
 .home-banner-item {
     margin: 0;
     padding: 0;
@@ -132,7 +159,6 @@ a {
         flex: 1 100%;
     }
     &_1 {
-        flex: 0 0 50%;
         @media @mobile {
             flex: 0 0 100%;
         }
@@ -185,5 +211,46 @@ a {
         cursor: pointer;
         z-index: 100;
         transform: rotate(90deg);
+    }
+}
+
+.footer {
+    &__streak {
+        text-transform: uppercase;
+        font-size: 16px;
+        text-align: center;
+        .link-on-main-res {
+            font-weight: bold;
+        }
+        &:after {
+            background: @gray none repeat scroll 0 0;
+            content: "";
+            display: block;
+            height: 1px;
+        }
+    }
+    .conditions {
+        -js-display: flex;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        &__block {
+            margin: 15px;
+            margin-left: 0;
+            padding-right: 30px;
+            border-right: 1px solid @gray;
+            text-align: center;
+            font-size: 13px;
+            &:last-child {
+                border-right: none;
+            }
+            h4 {
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            p {
+                color: #666;
+            }
+        }
     }
 }
