@@ -75,7 +75,9 @@ a {
     }
     .logo {
         width: 25%;
-        position: relative;
+        @media @mobile {
+            width: 40%;
+        }
     }
     .reg-menu {
         float: right;
@@ -97,7 +99,6 @@ a {
            font-size: 12px;
         }
     }
-
 }
 
 @media @mobile {
@@ -114,8 +115,6 @@ a {
     }
     .menu-toggle {
         position: absolute;
-        top: 30;
-        left: 40;
         font-size: 160%;
         cursor: pointer;
         z-index: 100;
