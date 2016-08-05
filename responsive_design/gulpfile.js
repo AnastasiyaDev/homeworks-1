@@ -18,7 +18,7 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 const paths = {
     html: ['src/**/*.html'],
-    img: ['src/img/**/*.*'],
+    img: ['src/img/**/*.*', '!src/img/svg/sprite/*.svg'],
     less: ['src/less/**/*.less'],
     js: ['src/js/**/*.js']
 };
@@ -71,11 +71,8 @@ gulp.task('watcher', () => {
 });
 
 gulp.task('svgstore', () => {
-    gulp.src('src/img/svg/*.svg')
-        .pipe(svgstore({
-            inlineSvg: true,
-            fileName: 'sprite.svg'
-        }))
+    gulp.src('src/img/svg/sprite/*.svg')
+        .pipe(svgstore({ inlineSvg: true }))
         .pipe(gulp.dest('dist/img/svg'));
 });
 
