@@ -11,6 +11,7 @@ const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
 const eslint = require('gulp-eslint');
 const gulpIf = require('gulp-if');
+const svgstore = require('gulp-svgstore');
 
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 const isProduction = process.env.NODE_ENV == 'production';
@@ -67,6 +68,15 @@ gulp.task('watcher', () => {
     gulp.watch(paths.less, ['styles']);
     gulp.watch(paths.js, ['scripts']);
     gulp.watch(paths.html, ['entryFiles']);
+});
+
+gulp.task('svgstore', () => {
+    gulp.src('src/img/svg/*.svg')
+        .pipe(svgstore({
+            inlineSvg: true,
+            fileName: 'sprite.svg'
+        }))
+        .pipe(gulp.dest('dist/img/svg'));
 });
 
 gulp.task('serve', () => {
