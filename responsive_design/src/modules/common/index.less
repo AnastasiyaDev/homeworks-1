@@ -1,0 +1,48 @@
+@import (reference) "../../assets/less/mixins.less";
+
+.clearfix:after {
+    content: '';
+    clear: both;
+    display: table;
+    height: 0;
+}
+
+.unstyle {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.list-inline li {
+    display: inline-block;
+}
+
+.marg-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.only-mobile {
+    display: none;
+    @media @mobile {
+        display: block;
+    }
+}
+
+.hide-on-mobile {
+    @media @mobile {
+        display: none;
+    }
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    color: #000;
+}

@@ -1,0 +1,75 @@
+@import (reference) "../../assets/less/mixins.less";
+
+.top-panel { 
+    margin: 10px 20px;
+    .info-menu {
+        float: left;
+        &__link {
+            color: #666;
+        }   
+    }
+    .logo {
+        width: 25%;
+        @media @mobile {
+            width: 40%;
+        }
+    }
+    .reg-menu {
+        float: right;
+        &__link {
+            text-transform: uppercase;
+        }   
+    }
+    .info-menu, .reg-menu {
+        &__item {
+            padding: 5px;
+            margin: 10px 0;
+            border-right: 1px solid @gray;
+            &:last-child {
+                border-right: none;
+            }
+        }
+        &__link {
+           padding: 5px; 
+           font-size: 12px;
+        }
+    }
+}
+
+.header-menu {
+    background: #000;
+    text-align: center;
+    &__item {
+        padding: 5px;
+    }
+    &__link {
+        padding: 5px;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        @media @mobile {
+            color: #000;
+        } 
+    }
+}
+
+@media @mobile {
+    .menu {
+        width: 300px;
+        position: absolute;
+        height: 100vh;
+        background: #fff;
+        transform: translate(-300px, 0);
+        transition: all 1s;
+        &.open {
+            transform: translate(0px, 0);
+        }
+    }
+    .menu-toggle {
+        position: absolute;
+        font-size: 160%;
+        cursor: pointer;
+        z-index: 100;
+        transform: rotate(90deg);
+    }
+}

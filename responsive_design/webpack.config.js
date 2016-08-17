@@ -1,21 +1,23 @@
 /*global __dirname process */
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
+// const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
-    context: __dirname + '/src',
+    context: __dirname + '/src/modules',
     entry: {
-        common: './common',
-        header: './header',
-        img_grid: './img_grid',
-        mobile_menu: './mobile_menu',
-        footer: './footer'
+        main: './main',
+        common: './common'
     },
 
     output: {
         path: __dirname + '/dist',
         filename: '[name].js',
         library: '[name]'
+    },
+
+    resolve: {
+        modulesDirectories: ['node_modules']
     },
 
     module: {
@@ -36,13 +38,23 @@ module.exports = {
 
     devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
 
+    devServer: {
+        contentBase: './dist'
+    },
+
     plugins: [
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'common'
+            name: 'common',
+            minChunks: 2
         }),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(NODE_ENV)
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery'
         })
 
     ]
