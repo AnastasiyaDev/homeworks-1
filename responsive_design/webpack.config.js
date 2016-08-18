@@ -1,17 +1,22 @@
-/*global __dirname process */
+/*global __dirname process*/
+/*eslint-disable no-console*/
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
-// const LiveReloadPlugin = require('webpack-livereload-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// const path = NODE_ENV === 'development' ? 'http://localhost:8090' : __dirname ;
 
 module.exports = {
     context: __dirname + '/src/modules',
     entry: {
-        main: './main',
-        common: './common'
+        common: './common',
+        main: './main'
     },
 
     output: {
         path: __dirname + '/dist',
+        // path: __dirname + '/src/modules/',
+        // publicPath: 'http://localhost:8090',
         filename: '[name].js',
         library: '[name]'
     },
@@ -23,10 +28,10 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.less$/,
-            loader: 'style!css!autoprefixer!less'
+            loader: 'style!css!autoprefixer?browsers=last 2 versions!less'
         }, {
             test: /\.(svg|eot|ttf|woff|png|jpg|gif)/,
-            loader: 'file?name=[name].[ext]'
+            loader: 'file?name=[path][name].[ext]'
         }]
     },
 
@@ -39,10 +44,33 @@ module.exports = {
     devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
 
     devServer: {
-        contentBase: './dist'
+        // contentBase: NODE_ENV === 'development' ? './src' : './dist',
+        headers: {
+            // Handling issue with CORS font loading
+            'Access-Control-Allow-Origin': '*'
+        },
+
+        proxy: {
+            '/dist*': {
+                target: 'http://localhost:8090',
+                secure: false,
+                rewrite: function(req) {
+                    console.log(req.originalUrl);
+                    var wdsUrl = req.url.split('/');
+                    wdsUrl.splice(0, 2, 'src', 'modules'); // dist -> src/modules
+                    wdsUrl = wdsUrl.join('/');
+                    req.url = wdsUrl;
+                    console.log(req.originalUrl + ' -> ' + req.url);
+                }
+            }
+        }
     },
 
     plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html'
+        }),
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common',

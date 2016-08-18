@@ -1,7 +1,9 @@
-/*global $ _*/
+/*global $ */
 'use strict';
 
 $(function() {
+
+    var _ = require('lodash');
 
     var menuList = ['MAKEUP', 'SKINCARE', 'FRAGRANCES', 'ARMANI', '|', 'PRAVE', 'ONLINE', 'EXCLUSIVES', 'GIFTS', 'MAESTRO OF DETAILS'];
     var $headerMenuWide = $('#header-menu-wide');

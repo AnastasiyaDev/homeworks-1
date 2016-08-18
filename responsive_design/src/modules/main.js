@@ -1,7 +1,7 @@
-/*eslint no-unused-vars: "true"*/
-/*global require*/
 'use strict';
 
-var header = require('./header');
-var imgGrid = require('./img-grid');
-var footer = require('./footer');
+require('html!./index.html');
+require('./header');
+require('./mobile-menu');
+require('./img-grid');
+require('./footer');

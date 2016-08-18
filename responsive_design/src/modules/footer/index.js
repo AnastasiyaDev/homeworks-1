@@ -1,6 +1,6 @@
-/*global $ requere*/
+/*global $*/
 require('./index.less');
 
-var footerHtml = requere('html!./index.html');
+var footerHtml = require('html!./index.html');
 
 $('#footer').html(footerHtml);

@@ -52,24 +52,3 @@
         } 
     }
 }
-
-@media @mobile {
-    .menu {
-        width: 300px;
-        position: absolute;
-        height: 100vh;
-        background: #fff;
-        transform: translate(-300px, 0);
-        transition: all 1s;
-        &.open {
-            transform: translate(0px, 0);
-        }
-    }
-    .menu-toggle {
-        position: absolute;
-        font-size: 160%;
-        cursor: pointer;
-        z-index: 100;
-        transform: rotate(90deg);
-    }
-}

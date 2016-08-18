@@ -1,9 +1,7 @@
-/*global $ requere*/
+/*global $*/
 require('./index.less');
+// require('./temp-menu.js');
 
-var headerHtml = requere('html!./index.html');
-requere('./temp-menu.js');
-
-// $('#header').html(headerHtml);
-document.getElementById('header').innerHTML += headerHtml;
+var headerHtml = require('html!./index.html');
+$('#header').html(headerHtml);
 
