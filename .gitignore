@@ -1,7 +1,6 @@
-/.idea/
-/node_modules/
+.idea/
+node_modules/
 .DS_Store
 /gulp-basics/dist/
-/gulp-basics/node_modules/
 /responsive_design/dist/
-/responsive_design/node_modules/
+
