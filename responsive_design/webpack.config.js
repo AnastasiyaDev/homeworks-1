@@ -13,8 +13,7 @@ module.exports = {
 
     output: {
         path: __dirname + '/dist',
-        filename: '[name].js',
-        library: '[name]'
+        filename: '[name].js'
     },
 
     resolve: {
@@ -28,6 +27,15 @@ module.exports = {
         }, {
             test: /\.(svg|eot|ttf|woff|png|jpg|gif)/,
             loader: 'file?name=[path][name].[ext]'
+        }, {
+            test: /\.php$/,
+            loader: 'html?attrs[]=img:src&attrs[]=source:srcset&attrs[]=use:xlink:href!php'
+        },{
+            test: /\.html$/,
+            loader: 'html',
+            query: {
+                attrs: ['img:src', 'use:xlink:href', 'source:srcset']
+            }
         }]
     },
 
@@ -39,32 +47,11 @@ module.exports = {
 
     devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
 
-    devServer: {
-        headers: {
-            // Handling issue with CORS font loading
-            'Access-Control-Allow-Origin': '*'
-        },
-
-        proxy: {
-            '/dist*': {
-                target: 'http://localhost:8090',
-                secure: false,
-                rewrite: function(req) {
-                    console.log(req.originalUrl);
-                    var wdsUrl = req.url.split('/');
-                    wdsUrl.splice(1, 2, 'src', 'modules'); // dist -> src/modules
-                    wdsUrl = wdsUrl.join('/');
-                    req.url = wdsUrl;
-                    console.log(req.originalUrl + ' -> ' + req.url);
-                }
-            }
-        }
-    },
-
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html'
+            template: 'index.html',
+            cache: true
         }),
         new webpack.NoErrorsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({

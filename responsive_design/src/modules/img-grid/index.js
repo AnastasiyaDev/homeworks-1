@@ -1,6 +1,6 @@
 /*global $*/
 require('./index.less');
 
-var gridHtml = require('html!./index.html');
+var gridHtml = require('./index.html');
 
 $('#imgGrid').html(gridHtml);

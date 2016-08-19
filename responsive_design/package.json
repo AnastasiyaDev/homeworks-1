@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "NODE_ENV=production webpack -p",
-    "dev": "webpack-dev-server --hot --inline --progress --port 8090",
-    "webpack": "webpack"
+    "dev": "NODE_ENV=development webpack-dev-server --hot --inline --progress --port 8090",
+    "webpack": "NODE_ENV=development webpack"
   },
   "keywords": [
     "webpack"
@@ -28,8 +28,10 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "lodash": "^4.15.0",
+    "php-loader": "^0.2.0",
     "picturefill": "^3.0.2",
     "style-loader": "^0.13.1",
+    "transform-loader": "^0.2.3",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-svgstore-plugin": "^3.0.3"
