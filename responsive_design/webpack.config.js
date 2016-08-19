@@ -4,8 +4,6 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// const path = NODE_ENV === 'development' ? 'http://localhost:8090' : __dirname ;
-
 module.exports = {
     context: __dirname + '/src/modules',
     entry: {
@@ -15,8 +13,6 @@ module.exports = {
 
     output: {
         path: __dirname + '/dist',
-        // path: __dirname + '/src/modules/',
-        // publicPath: 'http://localhost:8090',
         filename: '[name].js',
         library: '[name]'
     },
@@ -44,7 +40,6 @@ module.exports = {
     devtool: NODE_ENV == 'development' ? 'cheap-inline-module-source-map' : null,
 
     devServer: {
-        // contentBase: NODE_ENV === 'development' ? './src' : './dist',
         headers: {
             // Handling issue with CORS font loading
             'Access-Control-Allow-Origin': '*'
@@ -57,7 +52,7 @@ module.exports = {
                 rewrite: function(req) {
                     console.log(req.originalUrl);
                     var wdsUrl = req.url.split('/');
-                    wdsUrl.splice(0, 2, 'src', 'modules'); // dist -> src/modules
+                    wdsUrl.splice(1, 2, 'src', 'modules'); // dist -> src/modules
                     wdsUrl = wdsUrl.join('/');
                     req.url = wdsUrl;
                     console.log(req.originalUrl + ' -> ' + req.url);
