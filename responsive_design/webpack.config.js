@@ -26,7 +26,7 @@ module.exports = {
             loader: 'style!css!autoprefixer?browsers=last 2 versions!less'
         }, {
             test: /\.(svg|eot|ttf|woff|png|jpg|gif)/,
-            loader: 'file?name=[path][name].[ext]'
+            loader: 'file?name=[path][name].[ext]?[hash]'
         }, {
             test: /\.php$/,
             loader: 'html?attrs[]=img:src&attrs[]=source:srcset&attrs[]=use:xlink:href!php'
