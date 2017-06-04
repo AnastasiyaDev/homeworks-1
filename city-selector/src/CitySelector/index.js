@@ -1,5 +1,8 @@
 'use strict';
-const $ = require('jquery');
+const $ = require('jquery'),
+    coreTemplate = require('./template/core.hbs'),
+    regions = require('./template/regions.hbs'),
+    localities = require('./template/localities.hbs');
 
 require('./style.less');
 
@@ -12,27 +15,17 @@ module.exports = class CitySelector {
 
         $('#info').show();
 
-        this.$container.append($('<button>', {
-            class: 'js-select-region',
-            type: 'button',
-            html: 'Выбрать регион'
-        }));
+        this.$container.append($(coreTemplate({})));
 
         this.$container.on('click', '.js-select-region', this.showRegionsList.bind(this))
             .on('click', '.js-region-item', this.showLocationList.bind(this))
-            .on('click', '.js-locality', this.selectCity.bind(this));
+            .on('click', '.js-locality-item', this.selectCity.bind(this));
     }
 
     showRegionsList() {
         this._sendRequest(this.regionsUrl).then((data) => {
-            data.forEach((item) => {
-                $('<div>', {
-                    class: 'region js-region-item',
-                    'data-id': item.id,
-                    'data-active': 0,
-                    html: item.title
-                }).appendTo('#citySelector');
-            });
+
+            $('.js-regions-list').html($(regions({data})));
 
             $('.js-select-region').hide();
         });
@@ -42,22 +35,26 @@ module.exports = class CitySelector {
         let currentItem = ev.currentTarget,
             idReg = $(currentItem).data('id');
 
+        $('.js-region-item').removeClass('_active');
+        $(currentItem).addClass('_active');
+
+        $('#localityText').text('');
+        $('#locality').val('');
+
         this._sendRequest(this.localitiesUrl + '/' + idReg).then((data) => {
             $('#regionText').text(data.id);
             $('#region').val(data.id);
 
-            for (var key in data.list) {
-                $('<div>', {
-                    class: 'locality js-locality',
-                    html: data.list[key]
-                }).appendTo('#citySelector');
-            }
+            $('.js-localities-list').html($(localities({data})));
         });
     }
 
     selectCity(ev) {
         let currentItem = ev.currentTarget,
             cityName = $(currentItem).text();
+
+        $('.js-locality-item').removeClass('_active');
+        $(currentItem).addClass('_active');
 
         $('#localityText').text(cityName);
         $('#locality').val(cityName);

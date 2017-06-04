@@ -9,7 +9,19 @@
     display: none;
 }
 
-.locality {
-    background-color: aliceblue;
-    padding: 10px;
+.regions-list,
+.localities-list {
+    list-style: none;
+    display: inline-block;
+    vertical-align: top;
+
+    &__item {
+        padding: 10px;
+        margin: 5px 0;
+
+        &:hover,
+        &._active {
+            background-color: aliceblue;
+        }
+    }
 }

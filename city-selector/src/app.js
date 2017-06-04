@@ -14,7 +14,7 @@ $('#createCitySelector').on('click', () => {
 });
 
 $('#destroyCitySelector').on('click', () => {
-    $('#citySelector').empty(); // то что пришло аяксом осталось, надо доработать
+    $('#citySelector').empty();
     $('#info').hide()
         .find($('span')).text('')
         .end()
