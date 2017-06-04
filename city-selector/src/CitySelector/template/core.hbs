@@ -1,3 +1,8 @@
-<button class="js-select-region">Выбрать регион</button>
+<button class="js-select-region-btn">Выбрать регион</button>
 <ul class="regions-list js-regions-list"></ul>
 <ul class="localities-list js-localities-list"></ul>
+<form class="form" action="{{url}}" method="post">
+    <input type="hidden" name="region" value="" id="regionInput">
+    <input type="hidden" name="locality" value="" id="localityInput">
+    <button class="btn js-submit-btn hidden" type="submit">Сохранить</button>
+</form>

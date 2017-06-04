@@ -3,14 +3,18 @@ const $ = require('jquery');
 const CitySelector = require('./CitySelector');
 
 $('#createCitySelector').on('click', () => {
-    if(!$('.js-select-region').length) {
+    if(!$('.js-select-region-btn').length) {
         new CitySelector({
-            elementId: 'citySelector',
+            containerId: 'citySelector',
             regionsUrl: 'http://localhost:3000/regions',
             localitiesUrl: 'http://localhost:3000/localities',
-            saveUrl: 'http://localhost:3000/selectedRegions'
+            saveUrl: 'http://localhost:3000/selectedRegions',
+            outputRegionId: 'regionText',
+            outputlocalityId: 'localityText'
         });
     }
+
+    $('#info').show();
 });
 
 $('#destroyCitySelector').on('click', () => {
