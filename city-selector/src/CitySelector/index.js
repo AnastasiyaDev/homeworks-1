@@ -15,7 +15,8 @@ module.exports = class CitySelector {
         this.$outputRegionField   = $(`#${obj.outputRegionId}`);
         this.$outputLocalityField = $(`#${obj.outputlocalityId}`);
 
-        this.selectRegionBtn = '.js-select-region-btn';
+        this.$emptyContainer = this.$container.clone();
+
         this.submitBtn       = '.js-submit-btn';
         this.regionItem      = '.js-region-item';
         this.localityItem    = '.js-locality-item';
@@ -24,26 +25,25 @@ module.exports = class CitySelector {
 
         this.$container.append($(coreTemplate({url: this.saveUrl})));
 
-        this.$container.on('click', this.selectRegionBtn, this.showRegionsList.bind(this))
+        this.$container.on('click', '.js-select-region-btn', this.showRegionsList.bind(this))
             .on('click', this.regionItem, this.showLocationList.bind(this))
             .on('click', this.localityItem, this.selectCity.bind(this));
     }
 
-    showRegionsList() {
+    showRegionsList(ev) {
         this._sendRequest(this.regionsUrl).then((data) => {
             const $regionsList = $('.js-regions-list');
 
             $regionsList.html($(regionsTemplate({data})));
 
-            $(this.selectRegionBtn).hide();
+            $(ev.currentTarget).hide();
         });
     }
 
     showLocationList(ev) {
-        let currentItem = ev.currentTarget,
-            idReg       = $(currentItem).data('id');
-
-        const $localitiesList = $('.js-localities-list');
+        const currentItem     = ev.currentTarget,
+              idReg           = $(currentItem).data('id'),
+              $localitiesList = $('.js-localities-list');
 
         $(this.submitBtn).addClass('hidden');
 
@@ -63,7 +63,7 @@ module.exports = class CitySelector {
     }
 
     selectCity(ev) {
-        let currentItem = ev.currentTarget,
+        const currentItem = ev.currentTarget,
             cityName    = $(currentItem).text();
 
         $(this.localityItem).removeClass('_active');
@@ -73,6 +73,10 @@ module.exports = class CitySelector {
         $(this.localityInput).val(cityName);
 
         $(this.submitBtn).removeClass('hidden');
+    }
+
+    destroy() {
+        this.$container.replaceWith(this.$emptyContainer);
     }
 
     _sendRequest(url) {

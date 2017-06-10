@@ -2,9 +2,11 @@
 const $ = require('jquery');
 const CitySelector = require('./CitySelector');
 
+let citySelector;
+
 $('#createCitySelector').on('click', () => {
-    if(!$('.js-select-region-btn').length) {
-        new CitySelector({
+    if(!citySelector) {
+        citySelector = new CitySelector({
             containerId: 'citySelector',
             regionsUrl: 'http://localhost:3000/regions',
             localitiesUrl: 'http://localhost:3000/localities',
@@ -18,7 +20,11 @@ $('#createCitySelector').on('click', () => {
 });
 
 $('#destroyCitySelector').on('click', () => {
-    $('#citySelector').empty();
+    if (citySelector) {
+        citySelector.destroy();
+        citySelector = null;
+    }
+
     $('#info').hide()
         .find($('span')).text('')
         .end()
