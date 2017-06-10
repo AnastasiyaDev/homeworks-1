@@ -28,6 +28,8 @@ module.exports = class CitySelector {
         this.$container.on('click', '.js-select-region-btn', this.showRegionsList.bind(this))
             .on('click', this.regionItem, this.showLocationList.bind(this))
             .on('click', this.localityItem, this.selectCity.bind(this));
+
+            $(document).triggerHandler('citySelector:create');
     }
 
     showRegionsList(ev) {
@@ -77,6 +79,8 @@ module.exports = class CitySelector {
 
     destroy() {
         this.$container.replaceWith(this.$emptyContainer);
+
+        $(document).triggerHandler('citySelector:destroy');
     }
 
     _sendRequest(url) {

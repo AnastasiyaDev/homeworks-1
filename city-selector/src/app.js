@@ -1,6 +1,8 @@
 'use strict';
-const $ = require('jquery');
-const CitySelector = require('./CitySelector');
+const $ = require('jquery'),
+      CitySelector = require('./CitySelector');
+
+require('./info.js');
 
 let citySelector;
 
@@ -15,8 +17,6 @@ $('#createCitySelector').on('click', () => {
             outputlocalityId: 'localityText'
         });
     }
-
-    $('#info').show();
 });
 
 $('#destroyCitySelector').on('click', () => {
@@ -24,9 +24,4 @@ $('#destroyCitySelector').on('click', () => {
         citySelector.destroy();
         citySelector = null;
     }
-
-    $('#info').hide()
-        .find($('span')).text('')
-        .end()
-        .find($('input')).val('');
 });
