@@ -3,9 +3,9 @@ const $ = require('jquery');
 
 class Info {
     constructor() {
-        console.log('initInfo');
-
         this.$info = $('#info');
+        this.$regionText = $('#regionText');
+        this.$localityText = $('#localityText');
 
         $(document).on('citySelector:create', this.initInfoBlock.bind(this))
             .on('citySelector:destroy', this.removeInfoBlock.bind(this))
@@ -18,13 +18,12 @@ class Info {
 
     removeInfoBlock() {
         this.$info.hide()
-            .find($('span')).text('')
-            .end()
-            .find($('input')).val('');
+            .find($('span')).text('');
     }
 
-    changeInfoBlock() {
-
+    changeInfoBlock(ev, data) {
+        this.$localityText.text(data.cityName);
+        this.$regionText.text(data.regionId);
     }
 }
 

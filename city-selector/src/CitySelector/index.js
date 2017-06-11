@@ -8,20 +8,15 @@ require('./style.less');
 
 module.exports = class CitySelector {
     constructor(obj) {
-        this.$container           = $(`#${obj.containerId}`);
-        this.regionsUrl           = obj.regionsUrl;
-        this.localitiesUrl        = obj.localitiesUrl;
-        this.saveUrl              = obj.saveUrl;
-        this.$outputRegionField   = $(`#${obj.outputRegionId}`);
-        this.$outputLocalityField = $(`#${obj.outputlocalityId}`);
+        this.$container    = $(`#${obj.containerId}`);
+        this.regionsUrl    = obj.regionsUrl;
+        this.localitiesUrl = obj.localitiesUrl;
+        this.saveUrl       = obj.saveUrl;
 
         this.$emptyContainer = this.$container.clone();
-
         this.submitBtn       = '.js-submit-btn';
         this.regionItem      = '.js-region-item';
         this.localityItem    = '.js-locality-item';
-        this.regionInput     = '#regionInput';
-        this.localityInput   = '#localityInput';
 
         this.$container.append($(coreTemplate({url: this.saveUrl})));
 
@@ -29,7 +24,7 @@ module.exports = class CitySelector {
             .on('click', this.regionItem, this.showLocationList.bind(this))
             .on('click', this.localityItem, this.selectCity.bind(this));
 
-            $(document).triggerHandler('citySelector:create');
+        $(document).triggerHandler('citySelector:create');
     }
 
     showRegionsList(ev) {
@@ -48,18 +43,14 @@ module.exports = class CitySelector {
               $localitiesList = $('.js-localities-list');
 
         $(this.submitBtn).addClass('hidden');
-
         $(this.regionItem).removeClass('_active');
         $(currentItem).addClass('_active');
 
-        this.$outputLocalityField.text('');
-
-        $(this.localityInput).val('');
-
         this._sendRequest(this.localitiesUrl + '/' + idReg).then((data) => {
-            this.$outputRegionField.text(data.id);
-            $(this.regionInput).val(data.id);
+            const regionId = data.id;
 
+            $(document).triggerHandler('citySelector:change', {regionId});
+            $('#regionInput').val(regionId);
             $localitiesList.html($(localitiesTemplate({data})));
         });
     }
@@ -71,15 +62,14 @@ module.exports = class CitySelector {
         $(this.localityItem).removeClass('_active');
         $(currentItem).addClass('_active');
 
-        this.$outputLocalityField.text(cityName);
-        $(this.localityInput).val(cityName);
+        $(document).triggerHandler('citySelector:change', {cityName});
 
+        $('#localityInput').val(cityName);
         $(this.submitBtn).removeClass('hidden');
     }
 
     destroy() {
         this.$container.replaceWith(this.$emptyContainer);
-
         $(document).triggerHandler('citySelector:destroy');
     }
 
